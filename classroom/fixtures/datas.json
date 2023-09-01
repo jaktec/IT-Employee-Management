@@ -168,8 +168,8 @@
         "is_staff": false,
         "is_active": true,
         "date_joined": "2018-06-21T04:47:59.795Z",
-        "is_student": true,
-        "is_teacher": false,
+        "is_developer": true,
+        "is_teamlead": false,
         "groups": [],
         "user_permissions": []
     }
@@ -187,8 +187,8 @@
         "is_staff": false,
         "is_active": true,
         "date_joined": "2018-06-21T04:48:26.868Z",
-        "is_student": false,
-        "is_teacher": true,
+        "is_developer": false,
+        "is_teamlead": true,
         "groups": [],
         "user_permissions": []
     }
@@ -201,7 +201,7 @@
         "subject": 5
     }
 }, {
-    "model": "classroom.student",
+    "model": "classroom.developer",
     "pk": 1,
     "fields": {
         "interests": [2, 3, 5]

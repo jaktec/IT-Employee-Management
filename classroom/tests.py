@@ -24,11 +24,11 @@ class LoginPageTest(TestCase):
 		response = self.client.post(loginurl, {'username':'bad', 'password':'bad'})
 		self.assertIn(b'Please enter a correct username and password.', response.content)
 
-	def test_login_as_teacher(self):
+	def test_login_as_teamlead(self):
 		loginurl = reverse('login')
-		# login as teacher
+		# login as teamlead
 		response = self.client.post(loginurl, {'username':'sumee', 'password':'sumee1910'}, follow=True)
-		self.assertEqual(response.redirect_chain[1][0],reverse('teachers:quiz_change_list'))
+		self.assertEqual(response.redirect_chain[1][0],reverse('teamleads:quiz_change_list'))
 		self.assertIn(b'My Quizzes', response.content)
 
 	

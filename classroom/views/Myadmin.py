@@ -8,9 +8,9 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 from django.views import View
-from ..decorators import student_required
-from ..forms import StdLeaveAppForm,StudentSignUpForm,AdminSignUpForm
-from ..models import Teacher,Student, User , TeachLeaveApp,Admin, StudentLeaveApp
+from ..decorators import developer_required
+from ..forms import StdProjectAppForm,DeveloperSignUpForm,AdminSignUpForm
+from ..models import Teamlead,Developer, User , TeamProjectApp,Admin, DeveloperProjectApp
 
 
 class AdminSignUpView(CreateView):
@@ -34,12 +34,12 @@ def Adpage(request):
     return render(request,'Adpage.html',context)
 
 
-def ShowTeacherApp(request): # It will show all applications send from teachers
+def ShowTeamleadApp(request): # show proj snd from teamleads
     
     admin = Admin.objects.filter(user=request.user).first()
-    app = TeachLeaveApp.objects.filter(to_admin = admin).all()
+    app = TeamProjectApp.objects.filter(to_admin = admin).all()
     
-    app2 = TeachLeaveApp.objects.filter(id=request.POST.get('answer')).all()
+    app2 = TeamProjectApp.objects.filter(id=request.POST.get('answer')).all()
 
     for items in app2:
 
@@ -48,5 +48,5 @@ def ShowTeacherApp(request): # It will show all applications send from teachers
 
     context = { 'app':app }
 
-    return render(request,'showTeacherApp.html',context)
+    return render(request,'showTeamleadApp.html',context)
 

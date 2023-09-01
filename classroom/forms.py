@@ -3,24 +3,24 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
 
-from classroom.models import (Student,Teacher,TeachLeaveApp
-                                ,StudentLeaveApp ,User, Admin,AppStatus)
+from classroom.models import (Developer,Teamlead,TeamProjectApp
+                                ,DeveloperProjectApp ,User, Admin,AppStatus)
 
 
-class TeacherSignUpForm(UserCreationForm):
+class TeamleadSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
 
     @transaction.atomic
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.is_teacher = True
+        user.is_teamlead = True
         user.save()
-        teacher = Teacher.objects.create(user=user)
+        teamlead = Teamlead.objects.create(user=user)
         return user
 
 
-class StudentSignUpForm(UserCreationForm):
+class DeveloperSignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -28,9 +28,9 @@ class StudentSignUpForm(UserCreationForm):
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
-        user.is_student = True
+        user.is_developer = True
         user.save()
-        student = Student.objects.create(user=user)
+        developer = Developer.objects.create(user=user)
         return user
 
 class AdminSignUpForm(UserCreationForm):
@@ -44,7 +44,7 @@ class AdminSignUpForm(UserCreationForm):
         user.is_superuser = True
         user.is_staff = True
         user.save()
-        student = Admin.objects.create(user=user)
+        developer = Admin.objects.create(user=user)
         return user
 
 class AppStatusForm(forms.ModelForm):
@@ -59,11 +59,11 @@ class AppStatusForm(forms.ModelForm):
 
         }
 
-class StdLeaveAppForm(forms.ModelForm):
+class StdProjectAppForm(forms.ModelForm):
     class Meta:
-        model = StudentLeaveApp
+        model = DeveloperProjectApp
 
-        fields = ('content', 'to_teacher')
+        fields = ('content', 'to_teamlead')
 
         widgets = {
 
@@ -71,9 +71,9 @@ class StdLeaveAppForm(forms.ModelForm):
 
         }
 
-class TeachLeaveAppForm(forms.ModelForm):
+class TeamProjectAppForm(forms.ModelForm):
     class Meta:
-        model = TeachLeaveApp
+        model = TeamProjectApp
         fields = ('content', 'to_admin',)
 
         widgets = {

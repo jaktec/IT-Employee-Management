@@ -8,10 +8,10 @@ class SignUpView(TemplateView):
 
 def home(request):
     if request.user.is_authenticated:
-        if request.user.is_teacher:
-            return redirect('teachers')
-        elif request.user.is_student:
-            return redirect('students')
+        if request.user.is_teamlead:
+            return redirect('teamleads')
+        elif request.user.is_developer:
+            return redirect('developers')
         elif request.user.is_superuser:
             return redirect('adminpage')
 

@@ -1,36 +1,36 @@
 from django.contrib import admin
-from classroom.models import ( Student,User,
-    Teacher,TeachLeaveApp,StudentLeaveApp )
+from classroom.models import ( Developer,User,
+    Teamlead,TeamProjectApp,DeveloperProjectApp )
 
 # Register your models here.
 
-class TeachAdmin(admin.ModelAdmin):
+class TeamAdmin(admin.ModelAdmin):
 
     class Meta:
-        model = Teacher
+        model = Teamlead
 
-admin.site.register(Teacher,TeachAdmin)
+admin.site.register(Teamlead,TeamAdmin)
 
 class StudAdmin(admin.ModelAdmin):
 
     class Meta:
-        model = Student
+        model = Developer
 
-admin.site.register(Student,StudAdmin)
+admin.site.register(Developer,StudAdmin)
 
-class StLeaveAppAdmin(admin.ModelAdmin):
-
-    class Meta:
-        model = StudentLeaveApp
-
-admin.site.register(StudentLeaveApp,StLeaveAppAdmin)
-
-class TeachLeaveAppAdmin(admin.ModelAdmin):
+class StProjectAppAdmin(admin.ModelAdmin):
 
     class Meta:
-        model = TeachLeaveApp
+        model = DeveloperProjectApp
 
-admin.site.register(TeachLeaveApp,TeachLeaveAppAdmin)
+admin.site.register(DeveloperProjectApp,StProjectAppAdmin)
+
+class TeamProjectAppAdmin(admin.ModelAdmin):
+
+    class Meta:
+        model = TeamProjectApp
+
+admin.site.register(TeamProjectApp,TeamProjectAppAdmin)
 
 
 class UserAdmin(admin.ModelAdmin):

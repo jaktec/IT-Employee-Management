@@ -11,28 +11,28 @@ from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from ..decorators import teacher_required
-from ..forms import TeachLeaveAppForm,TeacherSignUpForm,TeachLeaveAppForm,AppStatusForm
-from ..models import  User,Teacher,StudentLeaveApp,Student,TeachLeaveApp
+from ..decorators import teamlead_required
+from ..forms import TeamProjectAppForm,TeamleadSignUpForm,TeamProjectAppForm,AppStatusForm
+from ..models import  User,Teamlead,DeveloperProjectApp,Developer,TeamProjectApp
 
 
-class TeacherSignUpView(CreateView):
+class TeamleadSignUpView(CreateView):
     model = User
-    form_class = TeacherSignUpForm
+    form_class = TeamleadSignUpForm
     template_name = 'registration/signup_form.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'teacher'
+        kwargs['user_type'] = 'teamlead'
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('teachers')
+        return redirect('teamleads')
 
-#def TeachLeaveApp(request):
+#def TeamProjectApp(request):
 
-#    form = StdLeaveAppForm(request.POST)
+#    form = StdProjectAppForm(request.POST)
 
  #   if form.is_valid():
   #      form.save()
@@ -42,13 +42,13 @@ class TeacherSignUpView(CreateView):
    # return render(request,'stApp.html',context)
 
 
-def ShowApp(request): # It will show all application send from students
+def ShowApp(request): #  showw proj snd from developers
     
-    teacher = Teacher.objects.filter(user=request.user).first()
-    app = StudentLeaveApp.objects.filter(to_teacher = teacher).all()
-    app1 = StudentLeaveApp.objects.filter(to_teacher = teacher).all()
+    teamlead = Teamlead.objects.filter(user=request.user).first()
+    app = DeveloperProjectApp.objects.filter(to_teamlead = teamlead).all()
+    app1 = DeveloperProjectApp.objects.filter(to_teamlead = teamlead).all()
     
-    app2 = StudentLeaveApp.objects.filter(id=request.POST.get('answer')).all()
+    app2 = DeveloperProjectApp.objects.filter(id=request.POST.get('answer')).all()
 
     for items in app2:
 
@@ -67,13 +67,13 @@ def Tpage(request):
     return render(request,'tpage.html',context)
 
 
-def TLeaveApp(request):
+def TProjectApp(request):
 
-    form = TeachLeaveAppForm(request.POST)
-    teacher = Teacher.objects.filter(user=request.user).first()
+    form = TeamProjectAppForm(request.POST)
+    teamlead = Teamlead.objects.filter(user=request.user).first()
 
     if form.is_valid():
-        form.instance.user = teacher
+        form.instance.user = teamlead
         form.save()
 
     context = {'form':form}
@@ -81,14 +81,14 @@ def TLeaveApp(request):
     return render(request,'tApp.html',context)
 
 
-def TeacherStatusOfApp(request):
+def TeamleadStatusOfApp(request):
 
-    teacher = Teacher.objects.filter(user=request.user).first()
+    teamlead = Teamlead.objects.filter(user=request.user).first()
 
-    app = TeachLeaveApp.objects.filter(user=teacher).all()
+    app = TeamProjectApp.objects.filter(user=teamlead).all()
 
     context = { 'app':app }
 
-    return render(request,'TeacherAppStatus.html',context)
+    return render(request,'TeamleadAppStatus.html',context)
 
 

@@ -1,16 +1,16 @@
 from django.urls import include, path
 
-from .views import classroom, students, teachers
+from .views import classroom, developers, teamleads
 
 urlpatterns = [
     path('', classroom.home, name='home'),
 
-    path('students/', include(([
+    path('developers/', include(([
 
-    ], 'classroom'), namespace='students')),
+    ], 'classroom'), namespace='developers')),
 
-    path('teachers/', include(([
+    path('teamleads/', include(([
 
 
-    ], 'classroom'), namespace='teachers')),
+    ], 'classroom'), namespace='teamleads')),
 ]

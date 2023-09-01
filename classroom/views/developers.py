@@ -9,33 +9,33 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 from django.views import View
 
-from ..decorators import student_required
-from ..forms import StdLeaveAppForm,StudentSignUpForm
-from ..models import Teacher,Student, User , TeachLeaveApp, StudentLeaveApp
+from ..decorators import developer_required
+from ..forms import StdProjectAppForm,DeveloperSignUpForm
+from ..models import Teamlead,Developer, User , TeamProjectApp, DeveloperProjectApp
 
 
-class StudentSignUpView(CreateView):
+class DeveloperSignUpView(CreateView):
     model = User
-    form_class = StudentSignUpForm
+    form_class = DeveloperSignUpForm
     template_name = 'registration/signup_form.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'student'
+        kwargs['user_type'] = 'developer'
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('students')
+        return redirect('developers')
 
-def StLeaveApp(request):
+def StProjectApp(request):
 
-    form = StdLeaveAppForm(request.POST)
+    form = StdProjectAppForm(request.POST)
     
-    student = Student.objects.filter(user=request.user).first()
+    developer = Developer.objects.filter(user=request.user).first()
 
     if form.is_valid():
-        form.instance.user=student
+        form.instance.user=developer
         form.save()
 
     context = {'form':form}
@@ -44,9 +44,9 @@ def StLeaveApp(request):
 
 def StatusOfApp(request):
 
-    student = Student.objects.filter(user=request.user).first()
+    developer = Developer.objects.filter(user=request.user).first()
 
-    app = StudentLeaveApp.objects.filter(user=student).all()
+    app = DeveloperProjectApp.objects.filter(user=developer).all()
 
     context = { 'app':app }
 
@@ -55,9 +55,9 @@ def StatusOfApp(request):
 
 def Stpage(request):
 
-    student = Student.objects.filter(user=request.user).first()
+    developer = Developer.objects.filter(user=request.user).first()
 
-    app = StudentLeaveApp.objects.filter(user=student).all()
+    app = DeveloperProjectApp.objects.filter(user=developer).all()
 
     context = { 'app':app }
 

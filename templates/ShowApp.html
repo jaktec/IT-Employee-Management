@@ -2,7 +2,7 @@
 
 {% block content %}
 
-Welcome Teacher {{user.username}}
+Welcome Teamlead {{user.username}}
 
 
 
@@ -15,19 +15,19 @@ Welcome Teacher {{user.username}}
           <form method="POST">
 
             {%  csrf_token  %}
-            <center style="margin-left:-120px;margin-top:70px "><strong>{{ s.content }} by student {{s.user}}.</strong><strong style="margin-left:60px;">Your Response : </strong> This application is {{ s.status }}</center>
+            <center style="margin-left:-120px;margin-top:70px "><strong>{{ s.content }} by developer {{s.user}}.</strong><strong style="margin-left:60px;">Your Response : </strong> This application is {{ s.status }}</center>
 
             <div class="row">
         
                 <div class="col-md-6" style="margin-left:200px;">
             
-                    <input class="btn btn-student btn-lg" style="background-color:green;" type="submit" value="accept" name="status">
+                    <input class="btn btn-developer btn-lg" style="background-color:green;" type="submit" value="accept" name="status">
                     
                 </div>
             
                 <div class="col-md-6" style="margin-left: -200px;">
             
-                    <input class="btn btn-student btn-lg" style="background-color:red;height:50px; width: 100px;" type="submit" value="reject" name="status">
+                    <input class="btn btn-developer btn-lg" style="background-color:red;height:50px; width: 100px;" type="submit" value="reject" name="status">
 
                 </div>
             
