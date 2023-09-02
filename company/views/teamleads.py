@@ -13,7 +13,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 
 from ..decorators import teamlead_required
 from ..forms import TeamProjectAppForm,TeamleadSignUpForm,TeamProjectAppForm,AppStatusForm
-from ..models import  User,Teamlead,DeveloperProjectApp,Developer,TeamProjectApp
+from ..models import  User,Teamlead,DeveloperProjectApp,Developer,TeamProjectApp, ProjectAssignment
 
 
 class TeamleadSignUpView(CreateView):

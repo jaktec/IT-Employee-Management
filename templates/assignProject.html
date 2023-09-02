@@ -4,24 +4,27 @@
 
 {% block content %}
 
+<p style="margin-top: 10px;"> Welcome Admin <strong>{{user.username}}</strong> </p>
+
 
 <div class="row box2">
 
 	<div class="col-md-auto box1">
 
-	<font size ="5px;"; style="color:black;">Send Project Assignment </font> <a href="{% url 'teamleads' %}" style="margin-left:450px;">My DashBoard</a> 
+	<font size ="5px;"; style="color:black;">New Project Assignment </font> <a href="{% url 'adminpage' %}" style="margin-left:450px;">My DashBoard</a> 
 	<br><br>
 
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         {{ form|crispy }}
-        <button type="submit" class="btn btn-success">Submit Assignment</button>
+        <button type="submit" class="btn btn-success">Add Assignment</button>
       </form>
 
     </div>
 
 </div>
 
+<br><br>
 
 {% endblock %}

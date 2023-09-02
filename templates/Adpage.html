@@ -4,8 +4,9 @@
 
 {% block content %}
 
-<p style="margin-top: 10px;"> Welcome Admin <strong>{{user.username}}</strong> </p>
+<p style="margin-top: 10px;"> Welcome Admin <strong>{{user.username}}</strong> <a href="{% url 'adminpage' %}"  style="margin-left: 500px;">My DashBoard</a></p>
 
+<center><a href="AddProj" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">Add Project Assignment</a></center>
 <center><a href="ShowTapp" style="margin-top:50px;margin-bottom:50px; " class="btn btn-developer btn-lg" role="button">Show Teamleads Assignments</a></center>
 
 

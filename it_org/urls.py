@@ -21,6 +21,7 @@ urlpatterns = [
     path('ShowTResp',developers.StatusOfApp,name='ShowTResp'),
     path('adminpage',Myadmin.Adpage ,name='adminpage'),
     path('ShowTapp',Myadmin.ShowTeamleadApp ,name='ShowTapp'),
+    path('AddProj',Myadmin.AddProjectAssignment ,name='AddProj'),
     path('TAppStatus',teamleads.TeamleadStatusOfApp,name='TAppStatus'),
 
 

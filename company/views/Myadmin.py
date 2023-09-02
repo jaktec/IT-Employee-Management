@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 from django.views import View
 from ..decorators import developer_required
-from ..forms import StdProjectAppForm,DeveloperSignUpForm,AdminSignUpForm
+from ..forms import StdProjectAppForm,DeveloperSignUpForm,AdminSignUpForm, ProjectAssignForm
 from ..models import Teamlead,Developer, User , TeamProjectApp,Admin, DeveloperProjectApp
 
 
@@ -34,6 +34,7 @@ def Adpage(request):
     return render(request,'Adpage.html',context)
 
 
+
 def ShowTeamleadApp(request): # show proj snd from teamleads
     
     admin = Admin.objects.filter(user=request.user).first()
@@ -50,3 +51,15 @@ def ShowTeamleadApp(request): # show proj snd from teamleads
 
     return render(request,'showTeamleadApp.html',context)
 
+def AddProjectAssignment(request): # add proj 
+    
+    form = ProjectAssignForm(request.POST)
+    admin = Admin.objects.filter(user=request.user).first()
+
+    if form.is_valid():
+        form.instance.user = admin
+        form.save()
+
+    context2 = {'form':form}
+
+    return render(request,'assignProject.html',context2)
