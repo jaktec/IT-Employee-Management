@@ -12,14 +12,14 @@ St.{{user.username}} write you application :
 
 	<div class="col-md-5 box1">
 
-	<center><h1 style="font-family:bold;color:black;margin-bottom:50px">You Project Application </h1></center>
+	<center><h1 style="font-family:bold;color:black;margin-bottom:50px">You Project Assignment </h1></center>
 	<br>
 
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         {{ form|crispy }}
-        <button type="submit" class="btn btn-success">Submit Application</button>
+        <button type="submit" class="btn btn-success">Submit Assignment</button>
       </form>
 
     </div>

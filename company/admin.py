@@ -1,5 +1,5 @@
 from django.contrib import admin
-from classroom.models import ( Developer,User,
+from company.models import ( Developer,User,
     Teamlead,TeamProjectApp,DeveloperProjectApp )
 
 # Register your models here.

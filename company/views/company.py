@@ -15,9 +15,9 @@ def home(request):
         elif request.user.is_superuser:
             return redirect('adminpage')
 
-    return render(request, 'classroom/home.html')
+    return render(request, 'company/home.html')
 
 def Logout(request):
 
     auth.logout(request)
-    return render(request, 'classroom/home.html')
+    return render(request, 'company/home.html')

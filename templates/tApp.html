@@ -9,14 +9,14 @@
 
 	<div class="col-md-5 box1">
 
-	<center><h2 style="font-family:bold;color:black;margin-bottom:50px">Send Project Application </h2></center>
+	<center><h2 style="font-family:bold;color:black;margin-bottom:50px">Send Project Assignment </h2></center>
 	<br><br>
 
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         {{ form|crispy }}
-        <button type="submit" class="btn btn-success">Submit Application</button>
+        <button type="submit" class="btn btn-success">Submit Assignment</button>
       </form>
 
     </div>

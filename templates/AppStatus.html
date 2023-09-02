@@ -25,13 +25,13 @@ Welcome Developer {{user.username}}
                 {% for s in app %}
 
                 {% if s.status == 'reject' %}
-                <p style="margin-top:15px;"><b style="color:red;">Application project has been {{ s.status }}ed by  Lead {{s.to_teamlead}} </b></p>
+                <p style="margin-top:15px;"><b style="color:red;">Assignment project has been {{ s.status }}ed by  Lead {{s.to_teamlead}} </b></p>
 
                 {% elif s.status == 'accept' %}
-                <p style="margin-top:15px;"><b style="color: green;">Application project has been {{ s.status }}ed by  Lead {{s.to_teamlead}} </b></p>
+                <p style="margin-top:15px;"><b style="color: green;">Assignment project has been {{ s.status }}ed by  Lead {{s.to_teamlead}} </b></p>
 
                 {% elif s.status == None %}
-                <p style="margin-top:15px;"><b>Application project is not responded yet by  Lead {{s.to_teamlead}} </b></p>
+                <p style="margin-top:15px;"><b>Assignment project is not responded yet by  Lead {{s.to_teamlead}} </b></p>
 
                 {% endif %}
 

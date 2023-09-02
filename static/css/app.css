@@ -1,5 +1,6 @@
 .logo {
-  font-family: 'Clicker Script', cursive;
+  /* font-family: inherit; */
+  font-size: 3rem;
 }
 
 .logo a {

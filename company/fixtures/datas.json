@@ -1,33 +1,33 @@
 [{
-    "model": "classroom.question",
+    "model": "company.question",
     "pk": 1,
     "fields": {
         "quiz": 1,
         "text": "When was the Treaty of Versailles signed?"
     }
 }, {
-    "model": "classroom.question",
+    "model": "company.question",
     "pk": 2,
     "fields": {
         "quiz": 1,
         "text": "Britain, France, USA, Germany, Italy, and Russia."
     }
 }, {
-    "model": "classroom.question",
+    "model": "company.question",
     "pk": 3,
     "fields": {
         "quiz": 1,
         "text": "The war ended on November 11 1918."
     }
 }, {
-    "model": "classroom.question",
+    "model": "company.question",
     "pk": 4,
     "fields": {
         "quiz": 1,
         "text": "The name of the new government in Germany was called the Wiemar Republic."
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 1,
     "fields": {
         "question": 1,
@@ -35,7 +35,7 @@
         "is_correct": true
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 2,
     "fields": {
         "question": 1,
@@ -43,7 +43,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 3,
     "fields": {
         "question": 1,
@@ -51,7 +51,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 4,
     "fields": {
         "question": 1,
@@ -59,7 +59,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 5,
     "fields": {
         "question": 2,
@@ -67,7 +67,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 6,
     "fields": {
         "question": 2,
@@ -75,7 +75,7 @@
         "is_correct": true
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 7,
     "fields": {
         "question": 2,
@@ -83,7 +83,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 8,
     "fields": {
         "question": 2,
@@ -91,7 +91,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 9,
     "fields": {
         "question": 3,
@@ -99,7 +99,7 @@
         "is_correct": true
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 10,
     "fields": {
         "question": 3,
@@ -107,7 +107,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 11,
     "fields": {
         "question": 3,
@@ -115,7 +115,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 12,
     "fields": {
         "question": 3,
@@ -123,7 +123,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 13,
     "fields": {
         "question": 4,
@@ -131,7 +131,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 14,
     "fields": {
         "question": 4,
@@ -139,7 +139,7 @@
         "is_correct": true
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 15,
     "fields": {
         "question": 4,
@@ -147,7 +147,7 @@
         "is_correct": false
     }
 }, {
-    "model": "classroom.answer",
+    "model": "company.answer",
     "pk": 16,
     "fields": {
         "question": 4,
@@ -155,7 +155,7 @@
         "is_correct": false
     }
 },{
-    "model": "classroom.user",
+    "model": "company.user",
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$100000$fBZ6FNGxOrNT$O53zRTxQFRUSqX+THFIxWZn0evHJE0l32ST2BA0aKy4=",
@@ -174,7 +174,7 @@
         "user_permissions": []
     }
 }, {
-    "model": "classroom.user",
+    "model": "company.user",
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$100000$qSn4XCPpb6Ry$XjIgpmcuUzajsPso6UWzDUSNDMbC6bwTQYUuUghk8PY=",
@@ -193,7 +193,7 @@
         "user_permissions": []
     }
 }, {
-    "model": "classroom.quiz",
+    "model": "company.quiz",
     "pk": 1,
     "fields": {
         "owner": 2,
@@ -201,7 +201,7 @@
         "subject": 5
     }
 }, {
-    "model": "classroom.developer",
+    "model": "company.developer",
     "pk": 1,
     "fields": {
         "interests": [2, 3, 5]

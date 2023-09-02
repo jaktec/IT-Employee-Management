@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
 
-from classroom.models import (Developer,Teamlead,TeamProjectApp
+from company.models import (Developer,Teamlead,TeamProjectApp
                                 ,DeveloperProjectApp ,User, Admin,AppStatus)
 
 
