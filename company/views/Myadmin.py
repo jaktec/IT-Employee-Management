@@ -10,7 +10,7 @@ from django.views.generic import CreateView, ListView, UpdateView
 from django.views import View
 from ..decorators import developer_required
 from ..forms import StdProjectAppForm,DeveloperSignUpForm,AdminSignUpForm, ProjectAssignForm
-from ..models import Teamlead,Developer, User , TeamProjectApp,Admin, DeveloperProjectApp
+from ..models import Teamlead,Developer, User , TeamProjectApp,Admin, DeveloperProjectApp, ProjectAssignment
 
 
 class AdminSignUpView(CreateView):

@@ -3,8 +3,8 @@
 {% block content %}
   <h2>Register for an organization account</h2>
   <p class="lead">Select account type</p>
-  <a href="{% url 'admin_signup' %}" class="btn btn-teamlead btn-lg" role="button">Admin Account</a>
-  <a href="{% url 'teamlead_signup' %}" class="btn btn-teamlead btn-lg" role="button">Team lead Account</a>
-  <a href="{% url 'developer_signup' %}" class="btn btn-developer btn-lg" role="button">Developer Account</a>
+  <a href="{% url 'admin_signup' %}" class="btn btn-teamlead btn-lg" role="button" style="margin-right: 20px; margin-bottom: 10px;" >Admin Account</a>
+  <a href="{% url 'teamlead_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Team lead Account</a>
+  <a href="{% url 'developer_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Developer Account</a>
 {% endblock %}
 

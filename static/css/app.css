@@ -34,28 +34,28 @@ footer a {
 
 .btn-developer {
   color: #fff;
-  background-color: #91afb6;
-  border-color: #91afb6;
+  background-color: #3f7481;
+  border-color: #284d56;
 }
 
 .btn-developer:hover,
 .btn-developer:active {
   color: #fff;
-  background-color: #608993;
-  border-color: #608993;
+  background-color: #23434b;
+  border-color: #172d32;
 }
 
 .btn-teamlead {
   color: #fff;
-  background-color: #8980a5;
-  border-color: #8980a5;
+  background-color: #6e6195;
+  border-color: #5a5270;
 }
 
 .btn-teamlead:hover,
 .btn-teamlead:active {
   color: #fff;
-  background-color: #66598B;
-  border-color: #66598B;
+  background-color: #4b3e6d;
+  border-color: #453a62;
 }
 
 .has-danger .radio,
