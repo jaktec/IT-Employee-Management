@@ -31,7 +31,7 @@ def Adpage(request):
 
     context = {'ad':'Hello'}
 
-    return render(request,'Adpage.html',context)
+    return render(request,'Adminpage.html',context)
 
 
 
@@ -51,6 +51,7 @@ def ShowTeamleadApp(request): # show proj snd from teamleads
 
     return render(request,'showTeamleadApp.html',context)
 
+
 def AddProjectAssignment(request): # add proj 
     
     form = ProjectAssignForm(request.POST)
@@ -63,3 +64,19 @@ def AddProjectAssignment(request): # add proj
     context2 = {'form':form}
 
     return render(request,'assignProject.html',context2)
+
+def ViewProjectAssignments(request): # show proj snd from teamleads
+    
+    admin = Admin.objects.filter(user=request.user).first()
+    app = ProjectAssignment.objects.filter(user = admin).all()
+    
+    app2 = TeamProjectApp.objects.filter(id=request.POST.get('answer')).all()
+
+    for items in app2:
+
+        items.status = request.POST.get('status')
+        items.save()
+
+    context = { 'app':app }
+
+    return render(request,'viewProjects.html',context)

@@ -11,7 +11,7 @@ from company.models import (Developer,Teamlead,TeamProjectApp
 class TeamleadSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
-    email = forms.EmailField(required=False)
+    email = forms.EmailField(required=True)
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('username', 'first_name','last_name',  'email', 'password1' ,'password2' )
@@ -28,7 +28,7 @@ class TeamleadSignUpForm(UserCreationForm):
 class DeveloperSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
-    email = forms.EmailField(required=False)
+    email = forms.EmailField(required=True)
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('username', 'first_name','last_name',  'email', 'password1' ,'password2' )
