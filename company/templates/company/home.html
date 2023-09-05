@@ -2,23 +2,25 @@
 {% load static %}
 {% block content %}
 {% comment %} <span class="icon-org-building"></span> {% endcomment %}
-  <h2>Welcome to IT Employee Management </h2>
-  <p class="lead">
-    If registered then login else, join
-    by creating a <a href="{% url 'developer_signup' %}">developer account</a> or a <a href="{% url 'teamlead_signup' %}">teamlead account</a>.
-  </p>
-  <hr>
-  <h4>Get started</h4>
-  <p>
-    
-  </p>
+<section class="hero text-light text-center">
+    <div class="container-sm">
+        <div class="hero-inner">
+            <h1 class="hero-title h2-mobile mt-0 is-revealing" style="font-family: 'Arial', sans-serif;">Welcome to IT Employee Management</h1>
+            <p class="hero-paragraph is-revealing"> If registered then login else, join
+                by creating an account <a href="{% url 'developer_signup' %}">developer account</a> or a <a href="{% url 'teamlead_signup' %}">teamlead account</a>.</p>
+            <p class="hero-cta is-revealing"><a class="button button-secondary button-shadow" href="{% url 'login' %}">Get started now</a></p>
+           
+            </div>
+        </div>
+    </div>
+</section>
 
 
   
   <section>
   {% comment %} <p class="hero-cta is-revealing"><a class="button button-secondary button-shadow" href="#">Get started now</a></p> {% endcomment %}
 
-  <div class=""> <center><img src= "{% static 'hero-img.png' %}" alt="" style="margin-top: 40%;"> <center> </section>
+  <div class=""> <center><img src= "{% static 'hero-img.png' %}" alt="" style="margin-top: 10%;"> <center> </section>
 
   <section class="features section text-center">
     <div class="container">

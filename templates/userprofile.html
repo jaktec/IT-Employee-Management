@@ -1,0 +1,72 @@
+{% extends 'dash.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<p style="margin-top: 10px;"> <strong>{{user.username}}</strong> <a href="{% url 'adminpage' %}"  style="margin-left: 500px;">My DashBoard</a></p>
+
+<section class="vh-100" style="background-color: #f4f5f7;">
+    <div class="container py-6 h-75">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-10 mb-4 mb-lg-0">
+          <div class="card mb-6" style="border-radius: .5rem;">
+            <div class="row g-0">
+              <div class="col-md-4 border-sidebar-grad text-center text-white"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="{% static 'img/avatarpic.png' %}"
+                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                <h5>{{ user.get_full_name }}</h5>
+                <p>{{ user_role }}</p>
+                <i class="far fa-edit mb-5"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h6>Profile</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>First Name</h6>
+                      <p class="text-muted">{{user.first_name}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Last Name</h6>
+                      <p class="text-muted">{{user.last_name}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>User Name</h6>
+                      <p class="text-muted">{{user.username}}</p>
+                    </div>
+                  </div>
+                  <h6>Info</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Email</h6>
+                      <p class="text-muted">{{user.email}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Join Date</h6>
+                      <p class="text-muted">{{user.date_joined}}t</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<script> 
+    {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+    document.getElementById("usrbtn").focus();
+    document.getElementById("usrbtn").style.backgroundColor = '#e9ecef';
+    document.getElementById("usrbtn").style.color = '#495057';
+    {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+</script>
+
+{% endblock %}
+

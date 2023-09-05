@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container my-4">
+  <div class="row justify-content-center">
+   <div class="col-md-10 col-sm-12">  
+    
+<div class="card mb-3">
+  <div class="card-body">
   <h2>Register for an organization account</h2>
   <p class="lead">Select account type</p>
   <a href="{% url 'admin_signup' %}" class="btn btn-teamlead btn-lg" role="button" style="margin-right: 20px; margin-bottom: 10px;" >Admin Account</a>
   <a href="{% url 'teamlead_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Team lead Account</a>
   <a href="{% url 'developer_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Developer Account</a>
-{% endblock %}
+  </div></div>
+
+</div>
+</div>
+</div>
+  {% endblock %}
 

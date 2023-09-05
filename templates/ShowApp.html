@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'dash.html' %}
 
 {% block content %}
 
@@ -45,5 +45,13 @@ Welcome Teamlead {{user.username}} <a href="{% url 'teamleads' %}" style="margin
     </div>
 
 <br><br>
+
+<script> 
+    {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+    document.getElementById("showappbtn").focus();
+    document.getElementById("showappbtn").style.backgroundColor = '#e9ecef';
+    document.getElementById("showappbtn").style.color = '#495057';
+    {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+  </script>
 
 {% endblock %}

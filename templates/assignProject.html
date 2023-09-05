@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'dash.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -26,5 +26,13 @@
 </div>
 
 <br><br>
+
+<script> 
+  {% comment %} const button = document.getElemenstById("projectAssingbtn"); {% endcomment %}
+  document.getElementById("projectAssingbtn").focus();
+  document.getElementById("projectAssingbtn").style.backgroundColor = '#e9ecef';
+  document.getElementById("projectAssingbtn").style.color = '#495057';
+  
+</script>
 
 {% endblock %}

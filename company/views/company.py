@@ -21,3 +21,16 @@ def Logout(request):
 
     auth.logout(request)
     return render(request, 'company/home.html')
+
+def Userprofile(request):
+    role = "Administrator"
+    if request.user.is_authenticated:
+        if request.user.is_teamlead:
+            role = "Team Lead"
+        elif request.user.is_developer:
+            role = "Developer"
+        
+    context = { 'user_role': role}
+              
+    return render(request, 'userprofile.html', context)
+   

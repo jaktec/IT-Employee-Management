@@ -1,23 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'dash.html' %}
 
 {% block content %}
 
-Welcome Developer {{user.username}}
+<p style="margin-top: 10px;"> Welcome Developer <strong>{{user.username}}</strong> 
+  {% comment %} <a href="{% url 'adminpage' %}"  style="margin-left: 500px;">My DashBoard</a></p> {% endcomment %}
+
+<center><a href="sprojectApp" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">Submit Project Assignment</a></center>
+<center><a href="ShowTResp" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">View Submission Response</a></center>
 
 
-    <div class="row" style="padding-top: 70px;padding-bottom: 50px;">
-        
-      <div class="col-md-6" style="margin-left: 200px;">
-  
-        <a href="sprojectApp" class="btn btn-developer btn-lg" style="background-color:#645F5E;" role="button">Submit Project Assignment</a>
-          
-      </div>
-  
-      <div class="col-md-6" style="margin-left: -200px;">
-  
-        <a href="ShowTResp" class="btn btn-developer btn-lg" style="background-color:#645F5E;" role="button"> View Submission Response</a>
 
-      </div>
-
+      <script> 
+        {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+        document.getElementById("devpagebtn").focus();
+        document.getElementById("devpagebtn").style.backgroundColor = '#e9ecef';
+        document.getElementById("devpagebtn").style.color = '#495057';
+        {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+      </script>
 
 {% endblock %}

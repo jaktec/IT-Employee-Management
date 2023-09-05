@@ -3,6 +3,15 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+   <div class="col-md-10 col-sm-12">  
+
+
+<div class="card mb-3">
+  <div class="card-body">
+
   {% if form.non_field_errors %}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       {% for error in form.non_field_errors %}
@@ -14,7 +23,7 @@
     </div>
   {% endif %}
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-8 col-12">
+    <div class="col-lg-6 col-md-6 col-sm-8 col-12">
       <h2>Log in</h2>
       <form method="post" novalidate>
         {% csrf_token %}
@@ -25,4 +34,12 @@
       </form>
     </div>
   </div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
 {% endblock %}

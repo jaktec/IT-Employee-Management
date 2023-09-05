@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'dash.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -9,7 +9,7 @@
 
 	<div class="col-md-auto box1">
 
-	<font size ="5px;"; style="color:black;">Send Project Assignment </font> <a href="{% url 'teamleads' %}" style="margin-left:450px;">My DashBoard</a> 
+	<font size ="5px;"; style="color:black;">Send Project Update </font> 
 	<br><br>
 
     <form method="post" novalidate>
@@ -23,5 +23,12 @@
 
 </div>
 
+<script> 
+  {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+  document.getElementById("tappbtn").focus();
+  document.getElementById("tappbtn").style.backgroundColor = '#e9ecef';
+  document.getElementById("tappbtn").style.color = '#495057';
+  {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+</script>
 
 {% endblock %}

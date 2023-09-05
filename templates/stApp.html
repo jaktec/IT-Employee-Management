@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'dash.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -25,5 +25,13 @@ Developer {{user.username}} write your application :
     </div>
 
 </div>
+
+<script> 
+  {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+  document.getElementById("devprojectbtn").focus();
+  document.getElementById("devprojectbtn").style.backgroundColor = '#e9ecef';
+  document.getElementById("devprojectbtn").style.color = '#495057';
+  {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+</script>
 
 {% endblock %}

@@ -26,8 +26,8 @@ class TeamleadSignUpForm(UserCreationForm):
 
 
 class DeveloperSignUpForm(UserCreationForm):
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
     class Meta(UserCreationForm.Meta):
         model = User
