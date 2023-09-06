@@ -4,10 +4,10 @@ from django.contrib.admin.widgets import AdminDateWidget, AdminSplitDateTime, Ad
 from django.db import transaction
 from django.forms.utils import ValidationError
 
-from company.models import (Developer,Teamlead,TeamProjectApp
-                                ,DeveloperProjectApp ,User, Admin,AppStatus, ProjectAssignment)
-
-
+from company.models import (Developer,Teamlead,LeadProjectUpdate
+                                ,DevProjectUpdate ,User, Admin,AppStatus, ProjectAssignment)
+import random
+import string
 class TeamleadSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
@@ -16,6 +16,15 @@ class TeamleadSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name','last_name',  'email', 'password1' ,'password2' )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        password = self.generate_random_password()
+        self.fields['password1'].widget.attrs.update({'value': password})
+        self.fields['password2'].widget.attrs.update({'value': password})
+        
+    def generate_random_password(self):
+        return ''.join(random.choices(string.digits, k=6))
+    
     @transaction.atomic
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -32,6 +41,15 @@ class DeveloperSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('username', 'first_name','last_name',  'email', 'password1' ,'password2' )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        password = self.generate_random_password()
+        self.fields['password1'].widget.attrs.update({'value': password})
+        self.fields['password2'].widget.attrs.update({'value': password})
+        
+    def generate_random_password(self):
+        return ''.join(random.choices(string.digits, k=6))
 
     @transaction.atomic
     def save(self):
@@ -69,7 +87,7 @@ class AppStatusForm(forms.ModelForm):
 
 class StdProjectAppForm(forms.ModelForm):
     class Meta:
-        model = DeveloperProjectApp
+        model = DevProjectUpdate
 
         fields = ('content', 'to_teamlead')
 
@@ -79,18 +97,18 @@ class StdProjectAppForm(forms.ModelForm):
 
         }
 
-class TeamProjectAppForm(forms.ModelForm):
+class LeadProjectUpdateForm(forms.ModelForm):
     class Meta:
-        model = TeamProjectApp
+        model = LeadProjectUpdate
         fields = ('content', 'to_admin',)
 
         widgets = {
             'content': forms.TextInput
         }
 
-class ProjectAssignForm(forms.ModelForm):
+class NewProjectForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(ProjectAssignForm, self).__init__(*args, **kwargs)
+        super(NewProjectForm, self).__init__(*args, **kwargs)
         self.fields['details'].required = False  
         self.fields['start_date'].required = False 
         self.fields['end_date'].required = False 
@@ -108,4 +126,11 @@ class ProjectAssignForm(forms.ModelForm):
         }
 
    
+class AssignProjectForm(forms.ModelForm):
+    class Meta:
+        model = ProjectAssignment
+        fields = ('project_name', 'developer',)
 
+        # widgets = {
+        #     'content': forms.TextInput
+        # }

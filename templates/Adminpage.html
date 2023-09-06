@@ -6,12 +6,184 @@
 {% block content %}
 
 <p style="margin-top: 10px;"> Welcome Admin <strong>{{user.username}}</strong> 
-    {% comment %} <a href="{% url 'adminpage' %}"  style="margin-left: 500px;">My DashBoard</a></p> {% endcomment %}
-
+   
 <center><a href="AddProj" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">Add Project Assignment</a></center>
 <center><a href="View" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">View Assignments</a></center>
 <center><a href="ShowTapp" style="margin-top:50px;margin-bottom:50px; " class="btn btn-developer btn-lg" role="button">Show Teamleads Submissions</a></center>
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="custom-icon-card card card-stats">
+        <div class="card-header card-header-warning card-header-icon">
+         
+          <p class="card-category">New Projects</p>
+          <h3 class="card-title">-</h3>
+        </div>
+
+        <div class="card-body">
+          <div class="stats">
+            <div class="progress" style="height: 4px">
+              <div
+                class="progress-bar bg-danger"
+                role="progressbar"
+                style="width: 100%"
+                aria-valuenow="65"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="custom-icon-card card card-stats">
+        <div class="card-header card-header-success card-header-icon">
+          <div class="card-icon">
+           
+          </div>
+          <p class="card-category">Completed Projects</p>
+          <h3 class="card-title">-</h3>
+        </div>
+        <div class="card-body">
+          <div class="stats">
+            <div class="progress" style="height: 4px">
+              <div
+                class="progress-bar bg-success"
+                role="progressbar"
+                style="width: 100%"
+                aria-valuenow="65"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="custom-icon-card card card-stats">
+        <div class="card-header card-header-danger card-header-icon">
+         
+          <p class="card-category">InProgress Project</p>
+          <h3 class="card-title">-</h3>
+        </div>
+        <div class="card-body">
+          <div class="stats">
+            <div class="progress" style="height: 4px">
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                style="width: 100%"
+                aria-valuenow="65"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="custom-icon-card card card-stats">
+        <div class="card-header card-header-info card-header-icon">
+          
+          <p class="card-category">Total Users</p>
+          <h3 class="card-title">-</h3>
+        </div>
+        <div class="card-body">
+          <div class="stats">
+            <div class="progress" style="height: 4px">
+              <div
+                class="progress-bar bg-info"
+                role="progressbar"
+                style="width: 100%"
+                aria-valuenow="65"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+ <div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+
+<div class="col-lg-11 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Basic Table</h4>
+                  <p class="card-description">
+                    Basic table with card
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>ID No.</th>
+                          <th>Created On</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Samso Park</td>
+                          <td>34424433</td>
+                          <td>12 May 2017</td>
+                          <td><label class="badge badge-danger">Pending</label></td>
+                        </tr>
+                        <tr>
+                          <td>Marlo Sanki</td>
+                          <td>53425532</td>
+                          <td>15 May 2015</td>
+                          <td><label class="badge badge-warning">In progress</label></td>
+                        </tr>
+                        <tr>
+                          <td>John ryte</td>
+                          <td>53275533</td>
+                          <td>14 May 2017</td>
+                          <td><label class="badge badge-info">Fixed</label></td>
+                        </tr>
+                        <tr>
+                          <td>Peter mark</td>
+                          <td>53275534</td>
+                          <td>16 May 2017</td>
+                          <td><label class="badge badge-success">Completed</label></td>
+                        </tr>
+                        <tr>
+                          <td>Dave</td>
+                          <td>53275535</td>
+                          <td>20 May 2017</td>
+                          <td><label class="badge badge-warning">In progress</label></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            </div>
+              </div>
+            </div> 
+
+
 <script> 
+    
     {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
     document.getElementById("Adminpagebtn").focus();
     document.getElementById("Adminpagebtn").style.backgroundColor = '#e9ecef';

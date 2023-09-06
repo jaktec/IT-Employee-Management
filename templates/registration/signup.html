@@ -3,16 +3,76 @@
 {% block content %}
 <div class="container my-4">
   <div class="row justify-content-center">
-   <div class="col-md-10 col-sm-12">  
+   <div class="col-md-12 col-sm-12">  
     
 <div class="card mb-3">
   <div class="card-body">
   <h2>Register for an organization account</h2>
   <p class="lead">Select account type</p>
-  <a href="{% url 'admin_signup' %}" class="btn btn-teamlead btn-lg" role="button" style="margin-right: 20px; margin-bottom: 10px;" >Admin Account</a>
+  {% comment %} <a href="{% url 'admin_signup' %}" class="btn btn-teamlead btn-lg" role="button" style="margin-right: 20px; margin-bottom: 10px;" >Admin Account</a>
   <a href="{% url 'teamlead_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Team lead Account</a>
-  <a href="{% url 'developer_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Developer Account</a>
-  </div></div>
+  <a href="{% url 'developer_signup' %}" class="btn btn-developer btn-lg" role="button" style="margin-right: 20px;  margin-bottom: 10px;" >Developer Account</a> {% endcomment %}
+  
+  <section class="prolesr section">
+    <div class="container">
+        <div class="section-inner has-top-dividder">
+            
+            <div class="prolesr-tables-wrap">
+                <div class="prolesr-table is-revealing">
+                    <div class="prolesr-table-inner">
+                        <div class="prolesr-table-main">
+                            <div class="prolesr-table-header">
+                                <div class="text-secondary">SuperUser</div>
+                                <div class=""><span class="h3">Admin</span></div>
+                            </div>
+                            
+                        </div>
+                        
+                            <a class="button button-secondary button-block" href="{% url 'admin_signup' %}">CREATE</a>
+                        
+                    </div>
+                </div>
+
+                <div class="prolesr-table is-revealing">
+                    <div class="prolesr-table-inner">
+                        <div class="prolesr-table-main">
+                            <div class="prolesr-table-header">
+                                <div class="text-primary">User</div>
+                                <div class=""><span class="h3">Team Lead</span></div>
+                            </div>
+                            
+                        </div>                        
+                            <a class="button button-primary button-block" href="{% url 'teamlead_signup' %}">CREATE</a>
+                        
+                    </div>
+                </div>
+
+                <div class="prolesr-table is-revealing">
+                  <div class="prolesr-table-inner">
+                      <div class="prolesr-table-main">
+                          <div class="prolesr-table-header">
+                              <div class="text-primary">User</div>
+                              <div class=""><span class="h3">Developer</span></div>
+                          </div>
+                          
+                      </div>
+                    
+                          <a class="button button-primary button-block" href="{% url 'developer_signup' %}">CREATE</a> 
+                      
+                  </div>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div></div>
+
+ 
+
 
 </div>
 </div>

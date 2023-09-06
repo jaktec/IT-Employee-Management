@@ -958,7 +958,7 @@ label {
   display: inline-flex;
   font-size: 13px;
   letter-spacing: 0px;
-  font-weight: 700;
+  font-weight: 900;
   line-height: 16px;
   text-transform: uppercase;
   text-decoration: none !important;
@@ -1006,11 +1006,22 @@ label {
 .button-sm.button-shadow:hover::before {
   box-shadow: 0 4px 16px rgba(32, 43, 54, 0.25);
 }
+.button-pre,
 .button-primary,
-.button-secondary {
+.button-secondary,
+.button-tertiary {
   color: #fff !important;
   transition: background 0.15s ease;
 }
+.button-pre {
+  background: #0089d2;
+  background: linear-gradient(65deg, #0078b8 -25%, #00a1eb 100%);
+}
+.button-pre:hover {
+  background: #027acf;
+  background: linear-gradient(65deg, #009cbb -25%, #00a7ee 100%);
+}
+
 .button-primary {
   background: #00b9d2;
   background: linear-gradient(65deg, #00a2b8 -25%, #00cfeb 100%);
@@ -1021,12 +1032,22 @@ label {
 }
 .button-secondary {
   background: #00cec5;
-  background: linear-gradient(65deg, #00a2b8 -25%, #00f9d2 100%);
+  background: linear-gradient(65deg, #00a2b8 -25%, #00daba 100%);
 }
 .button-secondary:hover {
   background: #00d1c7;
   background: linear-gradient(65deg, #00a4bb -25%, #00fcd4 100%);
 }
+.button-tertiary {
+  background: #00ce4f;
+  background: linear-gradient(65deg, #008633 -25%, #00ab5b 100%);
+}
+.button-tertiary:hover {
+  background: #00d16c;
+  background: linear-gradient(65deg, #05a10d -25%, #05c037 100%);
+}
+
+
 .button-block {
   display: flex;
 }
@@ -1272,11 +1293,11 @@ label {
     width: 480px;
   }
 }
-.pricing {
+.prolesr {
   position: relative;
   overflow: hidden;
 }
-.pricing::before {
+.prolesr::before {
   content: "";
   position: absolute;
   top: 100%;
@@ -1290,29 +1311,30 @@ label {
   transform: skewY(-40deg);
   overflow: hidden;
 }
-.pricing .section-title {
+.prolesr .section-title {
   margin-bottom: 48px;
 }
-.pricing-tables-wrap {
+.prolesr-tables-wrap {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-right: -12px;
   margin-left: -12px;
 }
-.pricing-tables-wrap:first-child {
+.prolesr-tables-wrap:first-child {
   margin-top: -12px;
 }
-.pricing-tables-wrap:last-child {
+.prolesr-tables-wrap:last-child {
   margin-bottom: -12px;
 }
-.pricing-table {
+.prolesr-table {
   padding: 12px;
-  width: 344px;
-  max-width: 344px;
+  width: 250px;
+  height: 220px;
+  max-width: 250px;
   flex-grow: 1;
 }
-.pricing-table-inner {
+.prolesr-table-inner {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -1320,11 +1342,11 @@ label {
   padding: 24px;
   height: 100%;
 }
-.pricing-table-inner > * {
+.prolesr-table-inner > * {
   position: relative;
   width: 100%;
 }
-.pricing-table-inner::before {
+.prolesr-table-inner::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1335,14 +1357,14 @@ label {
   mix-blend-mode: multiply;
 }
 @supports (-ms-ime-align: auto) {
-  .pricing-table-inner::before {
+  .prolesr-table-inner::before {
     box-shadow: 0 16px 48px rgba(32, 43, 54, 0.12);
   }
 }
-.pricing-table-header {
+.prolesr-table-header {
   position: relative;
 }
-.pricing-table-header::after {
+.prolesr-table-header::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -1358,29 +1380,29 @@ label {
     rgba(227, 231, 235, 0.1) 100%
   );
 }
-.pricing-table-features {
+.prolesr-table-features {
   color: #92a2b1;
 }
-.pricing-table-features li {
+.prolesr-table-features li {
   display: flex;
   align-items: center;
   margin-bottom: 14px;
 }
-.pricing-table-features li .list-icon {
+.prolesr-table-features li .list-icon {
   display: inline-flex;
   width: 16px;
   height: 12px;
   margin-right: 12px;
 }
-.pricing-table-cta {
+.prolesr-table-cta {
   align-self: flex-end;
 }
 @media (min-width: 641px) {
-  .pricing::before {
+  .prolesr::before {
     -webkit-transform: skewY(-12deg);
     transform: skewY(-12deg);
   }
-  .pricing .section-title {
+  .prolesr .section-title {
     margin-bottom: 64px;
   }
 }
@@ -1414,8 +1436,8 @@ main {
 }
 @media (min-width: 641px) {
   .section-inner {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 8px;
+    padding-bottom: 64px;
   }
 }
 .site-footer {

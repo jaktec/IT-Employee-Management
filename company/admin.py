@@ -1,6 +1,6 @@
 from django.contrib import admin
 from company.models import ( Developer,User,
-    Teamlead,TeamProjectApp,DeveloperProjectApp, ProjectAssignment)
+    Teamlead,LeadProjectUpdate,DevProjectUpdate, ProjectAssignment)
 
 # Register your models here.
 
@@ -21,16 +21,16 @@ admin.site.register(Developer,DevAdmin)
 class DvProjectAppAdmin(admin.ModelAdmin):
 
     class Meta:
-        model = DeveloperProjectApp
+        model = DevProjectUpdate
 
-admin.site.register(DeveloperProjectApp,DvProjectAppAdmin)
+admin.site.register(DevProjectUpdate,DvProjectAppAdmin)
 
-class TeamProjectAppAdmin(admin.ModelAdmin):
+class LeadProjectUpdateAdmin(admin.ModelAdmin):
 
     class Meta:
-        model = TeamProjectApp
+        model = LeadProjectUpdate
 
-admin.site.register(TeamProjectApp,TeamProjectAppAdmin)
+admin.site.register(LeadProjectUpdate,LeadProjectUpdateAdmin)
 
 class ProjectAssignmentAdmin(admin.ModelAdmin):
 

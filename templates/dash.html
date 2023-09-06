@@ -23,13 +23,14 @@
                     {% if user.is_staff %}
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id="Adminpagebtn" href="adminpage" >Overview</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "projectAssingbtn"  href="AddProj">Add Project</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "viewProjbtn"  href="">View Projects</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "viewProjbtn"  href="ViewProj">View Projects</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showtlsbtn"  href="ShowTapp">Lead Submissions</a>
                     {% endif %}
                     {% if user.is_teamlead %}
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id="teamleadbtn" href="teamleads" >Overview</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showappbtn"  href="Showapp">Dev Submissions</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "assignProj"  href="AssignProj">Assign Project</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "tappbtn"  href="tprojectApp">Project Update</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showappbtn"  href="Showapp">Dev Submissions</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showtlsbtn"  href="ShowTapp">Assignment Approval</a>
                     {% endif %}
                     {% if user.is_developer %}
@@ -59,10 +60,10 @@
                                 {% comment %} <li class="nav-item active"><a class="nav-link" href="#!"> Home</a></li> {% endcomment %}
                                 {% comment %} <li class="nav-item"><a class="nav-link" href="#!">Link</a></li> {% endcomment %}
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">👤{{ user.username }} </a>
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" style="font-size:18px;margin-right:3px;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">👤{{ user.username }} </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="#!">DashBoard</a>
-                                        <a class="dropdown-item" href="#!">Profile</a>
+                                        <a class="dropdown-item" href="UserProfile">Profile</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="logout">Logout</a>
                                     </div>
@@ -74,12 +75,12 @@
                 <!-- Page content-->
                 <div class="container-fluid">
 
-                    <div class="container my-4">
+                    <div class="container my-5">
                         <div class="row justify-content-center">
-                         <div class="col-md-10 col-sm-12">   
+                         <div class="col-md-12 col-sm-12">   
                     
 
-                    <div class="card mb-3">
+                    <div class="card mb-12">
                         <div class="card-body">
                         
                     {% block content %}

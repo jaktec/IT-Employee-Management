@@ -11,8 +11,8 @@ from django.views import View
 
 from ..decorators import developer_required
 from ..forms import StdProjectAppForm,DeveloperSignUpForm
-from ..models import Teamlead,Developer, User , TeamProjectApp, DeveloperProjectApp
-
+from ..models import Teamlead,Developer, User , LeadProjectUpdate, DevProjectUpdate, ProjectAssignment
+from company.views import company
 
 class DeveloperSignUpView(CreateView):
     model = User
@@ -24,8 +24,10 @@ class DeveloperSignUpView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        user = form.save()
+        user = form.save()        
         login(self.request, user)
+        password = form.cleaned_data['password1']
+        company.send_registration_email(user,password)
         return redirect('developers')
 
 def StProjectApp(request):
@@ -46,7 +48,7 @@ def StatusOfApp(request):
 
     developer = Developer.objects.filter(user=request.user).first()
 
-    app = DeveloperProjectApp.objects.filter(user=developer).all()
+    app = DevProjectUpdate.objects.filter(user=developer).all()
 
     context = { 'app':app }
 
@@ -57,8 +59,24 @@ def Stpage(request):
 
     developer = Developer.objects.filter(user=request.user).first()
 
-    app = DeveloperProjectApp.objects.filter(user=developer).all()
+    app = DevProjectUpdate.objects.filter(user=developer).all()
 
     context = { 'app':app }
 
     return render(request,'stpage.html',context)
+
+def ViewDeveloperAssignments(request): # show proj snd from teamleads
+    
+    developer = Developer.objects.filter(user=request.user).first()
+    data = ProjectAssignment.objects.filter(user = developer).all()
+    
+    # app2 = LeadProjectUpdate.objects.filter(id=request.POST.get('answer')).all()
+
+    # for items in app2:
+
+    #     items.status = request.POST.get('status')
+    #     items.save()
+
+    context = { 'data':data }
+
+    return render(request,'viewleadAssigns.html',context)

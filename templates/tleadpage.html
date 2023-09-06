@@ -1,20 +1,20 @@
 {% extends 'dash.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-<p style="margin-top: 10px;"> Welcome Admin <strong>{{user.username}}</strong> </p>
+<p style="margin-top: 10px;"> Welcome Team lead <strong>{{user.username}}</strong> 
+  
 
-
-
-
- <div class="page-content page-container" id="page-content">
+  <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
 
 <div class="col-lg-11 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title"><strong>Projects</strong></h4>
+                  <h4 class="card-title"><strong>My Projects</strong></h4>
                   <p class="card-description">
                     Data
                   </p>
@@ -24,7 +24,7 @@
                         <tr>
                           <th>Project Name</th>
                           <th>Details</th>
-                          <th>Team Lead</th>
+                          <th>Assigned By</th>
                           <th>Start Date</th>
                           <th>End Date</th>
                           <th>Status</th>
@@ -35,7 +35,7 @@
                              <tr>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.details }}</td>
-                                <td>{{ item.to_lead }}</td>
+                                <td>{{ item.user }}</td>
                                 <td>{{ item.start_date }}</td>
                                 <td>{{ item.end_date }}</td>
                                 <td><label class="badge badge-danger">Pending</label></td>
@@ -56,57 +56,18 @@
 
 
 
-{% comment %} 
-<div class="row" style="margin-top:30px;margin-bottom:50px;">
-
-    <div class="col-md-12">
-
-        {% for item in data %}
-
-          <form method="POST">
-
-            {%  csrf_token  %}
+<center><a href="Showapp" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">Show Developer Submissions</a></center>
+<center><a href="tprojectApp" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">Submit Project Assignment</a></center>
+<center><a href="TAppStatus" style="margin-top:50px;margin-bottom:50px; " class="btn btn-developer btn-lg" role="button">Show Admin Approvals</a></center>
 
 
-            <center style="margin-left:-120px;margin-top:70px "><strong>{{ s.content }} by teamlead {{s.user}}.</strong><strong style="margin-left:60px;">Your Response : </strong> This Assignment is {{ s.status }}</center>
 
-            <div class="row">
-        
-                <div class="col-md-6" style="margin-left:200px;">
-            
-                    <input class="btn btn-developer btn-success" type="submit" value="accept" name="status">
-                    
-                </div>
-            
-                <div class="col-md-2" style="margin-left: -200px; font-size: 3px; ">
-            
-                    <input class="btn btn-danger" style ="font-size: 11px; " type="submit" value="reject" name="status">
-
-                </div>
-            
-                <input type="hidden" name="answer" value="{{ s.id }}">
-
-
-        </div>
-
-            </form>    
-
-          {% endfor %}
-
-
-        </div>
-    </div>  {% endcomment %}
-
-<br><br>
-
-
-<script> 
-    
+  <script> 
     {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
-    document.getElementById("viewProjbtn").focus();
-    document.getElementById("viewProjbtn").style.backgroundColor = '#e9ecef';
-    document.getElementById("viewProjbtn").style.color = '#495057';
+    document.getElementById("teamleadbtn").focus();
+    document.getElementById("teamleadbtn").style.backgroundColor = '#e9ecef';
+    document.getElementById("teamleadbtn").style.color = '#495057';
     {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
-</script>
-
+  </script>
+  
 {% endblock %}
