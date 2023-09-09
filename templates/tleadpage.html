@@ -7,6 +7,11 @@
 <p style="margin-top: 10px;"> Welcome Team lead <strong>{{user.username}}</strong> 
   
 
+
+
+
+
+
   <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -27,18 +32,28 @@
                           <th>Assigned By</th>
                           <th>Start Date</th>
                           <th>End Date</th>
-                          <th>Status</th>
+                          <th>Developers</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {% for item in data %}
+                        {% for passigment in data %}
                              <tr>
-                                <td>{{ item.project_name }}</td>
-                                <td>{{ item.details }}</td>
-                                <td>{{ item.user }}</td>
-                                <td>{{ item.start_date }}</td>
-                                <td>{{ item.end_date }}</td>
-                                <td><label class="badge badge-danger">Pending</label></td>
+                                <td>{{ passigment.project_name }}</td>
+                                <td>{{ passigment.details }}</td>
+                                <td>{{ passigment.by_admin }}</td>
+                                <td>{{ passigment.start_date }}</td>
+                                <td>{{ passigment.end_date }}</td>
+                                <td>
+                                  {% if passigment.developers.exists %} 
+                                      {% for developer in passigment.developers.all %}
+                                          {{ developer.user.username }},
+                                      {% endfor %}
+                                  {% else %} 
+                                    Not Assigned
+                                  
+                                  {% endif %}
+
+                                </label></td>
                             </tr>
                         {% endfor %}
                       </tbody>

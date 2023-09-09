@@ -61,14 +61,18 @@ def Stpage(request):
 
     app = DevProjectUpdate.objects.filter(user=developer).all()
 
-    context = { 'app':app }
+    dev = Developer.objects.filter(user=request.user).first()
+    data = ProjectAssignment.objects.filter(developers = dev).all()
+
+    context = { 'app':app,
+               'data':data }
 
     return render(request,'stpage.html',context)
 
 def ViewDeveloperAssignments(request): # show proj snd from teamleads
     
-    developer = Developer.objects.filter(user=request.user).first()
-    data = ProjectAssignment.objects.filter(user = developer).all()
+    dev = Developer.objects.filter(user=request.user).first()
+    data = ProjectAssignment.objects.filter(developers = dev).all()
     
     # app2 = LeadProjectUpdate.objects.filter(id=request.POST.get('answer')).all()
 

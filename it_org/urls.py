@@ -25,8 +25,12 @@ urlpatterns = [
     path('TAppStatus',teamleads.TeamleadStatusOfApp,name='TAppStatus'),
 
     path('ViewProj', Myadmin.ViewProjectAssignments ,name='ViewProj'),
+    path('UserMng', Myadmin.ManageUsers ,name='UserMng'),
+
     path('AssignProj', teamleads.AssignProject ,name='AssignProj'),
 
     path('UserProfile',company.Userprofile ,name='UserProfile'),
 
+
+    
 ]

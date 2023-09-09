@@ -9,6 +9,8 @@ from company.models import (Developer,Teamlead,LeadProjectUpdate
 import random
 import string
 class TeamleadSignUpForm(UserCreationForm):
+    username = forms.CharField(label="Username", strip=True, help_text='Required. 150 characters or fewer.',)
+    password2 = forms.CharField(label="Confirm Password", strip=True, widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}), help_text='Username and password will be send to your email', )
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
     email = forms.EmailField(required=True)
@@ -35,6 +37,8 @@ class TeamleadSignUpForm(UserCreationForm):
 
 
 class DeveloperSignUpForm(UserCreationForm):
+    username = forms.CharField(label="Username", strip=True, help_text='Required. 150 characters or fewer.',)
+    password2 = forms.CharField(label="Confirm Password", strip=True, widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}), help_text='Username and password will be send to your email', )
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
@@ -127,10 +131,19 @@ class NewProjectForm(forms.ModelForm):
 
    
 class AssignProjectForm(forms.ModelForm):
+    # project_name = forms.ChoiceField(choices=[])
+    
     class Meta:
         model = ProjectAssignment
-        fields = ('project_name', 'developer',)
+        fields = ('developers',)
+       
+    def __init__(self, *args, **kwargs):
+        super(AssignProjectForm, self).__init__(*args, **kwargs)
+        self.fields['developers'].widget.attrs.update({'class': 'col-md-7'})
 
-        # widgets = {
-        #     'content': forms.TextInput
-        # }
+    #     project_names = ProjectAssignment.objects.values_list('project_name', flat=True).distinct()
+    #     self.fields['project_name'].choices = [(name, name) for name in project_names]
+    #     instance = kwargs.get('instance')
+    #     if instance:
+    #         developers_already_assigned = instance.developers.all()
+    #         self.fields['developers'].queryset = Developer.objects.exclude(id__in=developers_already_assigned)

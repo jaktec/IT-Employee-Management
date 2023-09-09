@@ -1,0 +1,127 @@
+{% extends 'dash.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<p style="margin-top: 10px;"> Welcome Admin <strong>{{user.username}}</strong> 
+   
+
+
+
+
+
+
+ <div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+
+<div class="col-lg-11 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Team Leads</h4>
+                  <p class="card-description">
+                    Current list of Team Leads
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>User Name</th>
+                          <th>Full Name</th>
+                          <th>Email</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for userdata in data1 %}
+                             <tr>
+                                <td>{{ userdata.user.username }}</td>
+                                <td>{{ userdata.user.get_full_name }}</td>
+                                <td>{{ userdata.user.email }}</td>                              
+                                <td>
+                                  <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="username" value="{{ userdata.user.username }}">                                   
+                                    
+                                    <button class="button btn-success" type="submit" value="change" name="action">Demote to Developer</button>
+                                    <button class="button btn-danger" type="submit" value="delete" name="action">Delete User</button>
+                                  </form>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Developers</h4>
+                  <p class="card-description">
+                    Current list of Developers
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>User Name</th>
+                          <th>Full Name</th>
+                          <th>Email</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for userdata in data2 %}
+                             <tr>
+                                <td>{{ userdata.user.username }}</td>
+                                <td>{{ userdata.user.get_full_name }}</td>
+                                <td>{{ userdata.user.email }}</td>                              
+                                <td>
+                                  <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="username" value="{{ userdata.user.username }}">                                   
+                                    
+                                    <button class="button btn-success" type="submit" value="change" name="action">Promote as TeamLead</button>
+                                    <button class="button btn-danger" type="submit" value="delete" name="action">Delete User</button>
+                                  </form>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+
+
+
+
+            
+            </div>
+              </div>
+            </div> 
+
+
+<script> 
+    
+    {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+    document.getElementById("usrmgbtn").focus();
+    document.getElementById("usrmgbtn").style.backgroundColor = '#e9ecef';
+    document.getElementById("usrmgbtn").style.color = '#495057';
+    {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+</script>
+
+{% endblock %}
+

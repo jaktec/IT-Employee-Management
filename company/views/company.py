@@ -1,3 +1,7 @@
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User,auth
@@ -32,11 +36,24 @@ def Userprofile(request):
             role = "Team Lead"
         elif request.user.is_developer:
             role = "Developer"
+    
+    if request.method == 'POST':
+        # Handle password change form submission
+        password_form = PasswordChangeForm(request.user, request.POST)
+        if password_form.is_valid():
+            user = password_form.save()
+            update_session_auth_hash(request, user)  # Update the session with the new password hash
+            # messages.success(request, 'Your password was successfully updated.')
+            return redirect('UserProfile')  # Redirect back to the user profile page
+    else:
+        password_form = PasswordChangeForm(request.user)
+
         
-    context = { 'user_role': role}
+    context = { 'user_role': role, 'password_form': password_form}
               
     return render(request, 'userprofile.html', context)
    
+
 
 def send_registration_email_async(user, password):
     

@@ -98,23 +98,51 @@ def TeamleadStatusOfApp(request):
     return render(request,'TeamleadAppStatus.html',context)
 
 
-def AssignProject(request): # show proj snd from teamleads
 
-    form = AssignProjectForm(request.POST)
-    
+def AssignProject(request):
+    form = AssignProjectForm(request.POST)   
     teamlead = Teamlead.objects.filter(user=request.user).first()
-    data = ProjectAssignment.objects.filter(to_lead = teamlead).all()
+    pdata = ProjectAssignment.objects.filter(to_lead = teamlead).all()
+
+    # app2 = ProjectAssignment.objects.filter(project_name=request.POST.get('answer')).all()
+    if request.method == 'POST':
+        for project_assignment in pdata:
+
+            # project_assignment.status = request.POST.get('status')
+            # project_assignment.save()
+            form = AssignProjectForm(request.POST)
+            if form.is_valid():
+                
+                project_id = request.POST.get('answer')
+                project_assignment2 = get_object_or_404(ProjectAssignment, id=project_id)
+                project_assignment2.status = "inprogress"
+                project_assignment2.developers.set(form.cleaned_data['developers'])
+                project_assignment2.save()  
+                # form.save_m2m() 
+                return redirect('teamleads')  
     
-    # app2 = LeadProjectUpdate.objects.filter(id=request.POST.get('answer')).all()
-    if form.is_valid():
-        form.instance.user = teamlead
-        form.save()
-        return redirect('teamleads')
-    # for items in app2:
+    
+   
 
-    #     items.status = request.POST.get('status')
-    #     items.save()
+    return render(request, 'tAssignProject.html', {'form': form, 'data': pdata})
 
-    context = { 'form':form }
+# def AssignProject(request): # show proj snd from teamleads
 
-    return render(request,'tAssignProject.html',context)
+#     form = AssignProjectForm(request.POST)
+    
+#     teamlead = Teamlead.objects.filter(user=request.user).first()
+#     data = ProjectAssignment.objects.filter(to_lead = teamlead).all()
+    
+#     # app2 = LeadProjectUpdate.objects.filter(id=request.POST.get('answer')).all()
+#     if form.is_valid():
+#         # form.instance.user = teamlead
+#         form.save()
+#         return redirect('teamleads')
+#     # for items in app2:
+
+#     #     items.status = request.POST.get('status')
+#     #     items.save()
+
+#     context = { 'form':form }
+
+#     return render(request,'tAssignProject.html',context)

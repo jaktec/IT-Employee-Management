@@ -38,6 +38,11 @@
                       <h6>User Name</h6>
                       <p class="text-muted">{{user.username}}</p>
                     </div>
+                    <div class="col-6 mb-3">
+                      <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDefault">
+                        Change Password
+                      </button>  
+                    </div>
                   </div>
                   <h6>Info</h6>
                   <hr class="mt-0 mb-4">
@@ -60,6 +65,39 @@
       </div>
     </div>
   </section>
+
+  
+
+
+  <div class="modal fade" id="exampleModalDefault" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="password-change-form">
+            
+            <form method="post">
+                {% csrf_token %}
+                {{ password_form.as_p }}
+                
+              
+        </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Change Password</button> 
+        </div> </form>
+      </div>
+    </div>
+  </div>
+
+
 <script> 
     {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
     document.getElementById("usrbtn").focus();

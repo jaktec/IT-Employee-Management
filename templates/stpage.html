@@ -5,6 +5,55 @@
 <p style="margin-top: 10px;"> Welcome Developer <strong>{{user.username}}</strong> 
   
 
+  
+
+
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+
+<div class="col-lg-11 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"><strong>My Assignments</strong></h4>
+                  <p class="card-description">
+                    Your Assigned Projects
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="bg-light">
+                        <tr>
+                          <th>Project Name</th>
+                          <th>Details</th>
+                          <th>Team Lead</th>                          
+                          <th>Last Date</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for assignment in data %}
+                             <tr>
+                                <td>{{ assignment.project_name }}</td>
+                                <td>{{ assignment.details }}</td>
+                                <td>{{ assignment.to_lead }}</td>                                
+                                <td>{{ assignment.end_date }}</td>                                
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            </div>
+              </div>
+            </div> 
+
+
+
+
+
 <center><a href="sprojectApp" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">Submit Project Assignment</a></center>
 <center><a href="ShowTResp" style="margin-top:50px;margin-bottom:20px; " class="btn btn-developer btn-lg" role="button">View Submission Response</a></center>
 

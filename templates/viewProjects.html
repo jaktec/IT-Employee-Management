@@ -38,7 +38,16 @@
                                 <td>{{ item.to_lead }}</td>
                                 <td>{{ item.start_date }}</td>
                                 <td>{{ item.end_date }}</td>
-                                <td><label class="badge badge-danger">Pending</label></td>
+                                <td>                                  
+                                  {% comment %} {% if item.developers.exists %}  {% endcomment %}
+                                  {% comment %} {% if not item.status %} {% endcomment %}
+                                  {% if item.status == "inprogress" %}
+                                  <label class="badge badge-warning">InProgress</label>
+                                  {% else %} 
+                                    <label class="badge badge-danger">Pending</label>                              
+                                  {% endif %}                                 
+                                
+                                </td>
                             </tr>
                         {% endfor %}
                       </tbody>
