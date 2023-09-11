@@ -7,7 +7,55 @@
 
 <div class="row" style="margin-top:30px;margin-bottom:50px;">
 
-    <div class="col-md-12">
+    {% for subm in leadupdate %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Project Name: {{ subm.project.project_name }} </h5>
+        <p class="card-text">Submitter by: Developer <strong> {{ subm.user }} </strong></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Team Lead : {{ subm.project.to_lead }}</li>       
+       
+      </ul>
+      <div class="card-body">
+        <p class="card-text">Team Lead Remarks:  <i> {{ subm.remarks }} </i></p>
+        {% if subm.project.status == "review" %}
+
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="pid" value="{{ subm.project.id }}">   
+            <p>Attachments: {% if not subm.attachments %} Nil {% else %}  {{ subm.attachments }} {% endif %} </P>           
+            <button type="submit" class="btn btn-success" name="paction" value="accept">Mark as Complete</button>
+            <button type="submit" class="btn btn-danger" name="paction" value="reject">Dissapprove</button>
+          </form>
+          {% elif subm.project.status == "submitted" %}
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Rejected Project</h4>
+            <p>You have dissaproved the project.</p>
+            
+            
+          </div>
+          </div></div>
+
+          {% else %}
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Completed</h4>
+            <p>This project is marked as complete</p>
+            
+            
+          </div>
+          </div></div>
+    
+          {% endif %}
+    
+       
+      </div>
+    </div>
+    {% endfor %}
+
+
+    {% comment %} <div class="col-md-12">
 
         {% for s in app %}
 
@@ -15,7 +63,7 @@
 
             {%  csrf_token  %}
 
-            <center style="margin-left:-120px;margin-top:70px "><strong>{{ s.content }} by teamlead {{s.user}}.</strong><strong style="margin-left:60px;">Your Response : </strong> This Assignment is {{ s.status }}</center>
+            <center style="margin-left:-120px;margin-top:70px "><strong>{{ s.remarks }} by teamlead {{s.user}}.</strong><strong style="margin-left:60px;">Your Response : </strong> This Assignment is {{ s.status }}</center>
 
             <div class="row">
         
@@ -41,7 +89,7 @@
           {% endfor %}
 
 
-        </div>
+        </div> {% endcomment %}
     </div>
 
 <br><br>

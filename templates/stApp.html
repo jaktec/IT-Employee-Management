@@ -5,27 +5,57 @@
 
 {% block content %}
 
-Developer {{user.username}} write your application :
+Developer {{user.username}} :
 
 
 <div class="row box2">
 
-	<div class="col-md-5 box1">
+	{% comment %} <div class="col-md-5 box1"> {% endcomment %}
+    {% for prj in pdata %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Project Name: {{ prj.project_name }} </h5>
+        
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Project Lead : {{ prj.to_lead }}</li>       
+       
+      </ul>
+      <div class="card-body">
 
-	<center><h1 style="font-family:bold;color:black;margin-bottom:50px">Your Project Assignment </h1></center>
-	<br>
+        {% if prj.status == "inprogress" %}
 
-    <form method="post" novalidate>
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}">
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-success">Submit Assignment</button>
-      </form>
 
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="answer" value="{{ prj.id }}">                    
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Submit Assignment</button>
+          </form>
+          {% else %}
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Submitted</h4>
+            <p>You Have submitted this project</p>
+            
+            
+          </div>
+          </div></div>
+    
+          {% endif %}
+    
+       
+      </div>
     </div>
 
+	
+	<br>
+
+    {% comment %} </div> {% endcomment %}
+    
 </div>
 
+
+{% endfor %}
 <script> 
   {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
   document.getElementById("devprojectbtn").focus();

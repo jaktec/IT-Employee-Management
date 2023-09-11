@@ -27,7 +27,7 @@ class DeveloperSignUpView(CreateView):
         user = form.save()        
         login(self.request, user)
         password = form.cleaned_data['password1']
-        company.send_registration_email(user,password)
+        # company.send_registration_email(user,password)
         return redirect('developers')
 
 def StProjectApp(request):
@@ -35,12 +35,29 @@ def StProjectApp(request):
     form = StdProjectAppForm(request.POST)
     
     developer = Developer.objects.filter(user=request.user).first()
+    pdata = ProjectAssignment.objects.filter(developers = developer).all()
+    if request.method == 'POST':
+        for project_assignment in pdata:
 
-    if form.is_valid():
-        form.instance.user=developer
-        form.save()
+            # project_assignment.status = request.POST.get('status')
+            # project_assignment.save()
+            form = StdProjectAppForm(request.POST)
+            if form.is_valid():
+                
+                project_id = request.POST.get('answer')
+                passignment = get_object_or_404(ProjectAssignment, id=project_id)
+                form.instance.to_teamlead = passignment.to_lead
+                form.instance.user=developer
+                form.instance.project = passignment
+                passignment.status = "submitted"               
+                passignment.save()  
+                form.save()
+                return redirect('sprojectApp')  
+    # if form.is_valid():
+    #     form.instance.user=developer
+    #     form.save()
 
-    context = {'form':form}
+    context = {'form':form, 'pdata': pdata}
 
     return render(request,'stApp.html',context)
 

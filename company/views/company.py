@@ -56,7 +56,7 @@ def Userprofile(request):
 
 
 def send_registration_email_async(user, password):
-    
+    # return
     subject = 'Your Registration Details'
     message = f'Username: {user.username}\nPassword: {password}'
     from_email = settings.EMAIL_HOST_USER 

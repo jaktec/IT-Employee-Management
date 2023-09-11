@@ -1,0 +1,104 @@
+{% extends 'dash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+Welcome Teamlead {{user.username}} 
+
+
+{% comment %} 
+<div class="row" style="margin-top:50px;margin-bottom:50px;">
+
+    <div class="col-md-12">
+
+        {% for s in devupdate %}
+
+          <form method="POST">
+
+            {%  csrf_token  %}
+            <center style="margin-left:-120px;margin-top:70px "><strong>{{ s.remarks }} by developer {{s.user}}.</strong><strong style="margin-left:60px;">Your Response : </strong> This Assignment is {{ s.status }}</center>
+
+            <div class="row">
+        
+                <div class="col-md-6" style="margin-left:200px;">
+            
+                    <input class="btn btn-developer btn-lg" style="background-color:green;" type="submit" value="accept" name="status">
+                    
+                </div>
+            
+                <div class="col-md-6" style="margin-left: -200px;">
+            
+                    <input class="btn btn-developer btn-lg" style="background-color:red;height:50px; width: 100px;" type="submit" value="reject" name="status">
+
+                </div>
+            
+                <input type="hidden" name="answer" value="{{ s.id }}">
+
+
+        </div>
+
+            </form>    
+                  
+          {% endfor %}
+
+
+        </div>
+    </div>
+
+<br><br> {% endcomment %}
+
+{% for subm in devupdate %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Project Name: {{ subm.project.project_name }} </h5>
+        <p class="card-text">Submitter by: Developer <strong> {{ subm.user }} </strong></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Assigned by : {{ subm.project.by_admin }}</li>       
+       
+      </ul>
+      <div class="card-body">
+        <p class="card-text">Developer Remarks:  <i> {{ subm.remarks }} </i></p>
+        {% if subm.project.status == "submitted" %}
+
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="pid" value="{{ subm.project.id }}">    
+            <p>Attachments: {% if not subm.attachments %} Nil {% else %}  {{ subm.attachments }} {% endif %} </P>                 
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success" name="paction" value="accept">Forward To Admin</button>
+            <button type="submit" class="btn btn-danger" name="paction" value="reject">Reject Submission</button>
+          </form>
+          {% elif subm.project.status == "inprogress" %}
+          <div class="alert alert-primary" role="alert">
+            <h4 class="alert-heading">Rejected Project</h4>
+            <p>You have reject the submitted project to re-submit.</p>
+            
+            
+          </div>
+          </div></div>
+
+          {% else %}
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Forwarded</h4>
+            <p>You have forwarded the submitted project to review.</p>
+            
+            
+          </div>
+          </div></div>
+    
+          {% endif %}
+    
+       
+      </div>
+    </div>
+    {% endfor %}
+<script> 
+    {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}
+    document.getElementById("LeadSubmitbtn").focus();
+    document.getElementById("LeadSubmitbtn").style.backgroundColor = '#e9ecef';
+    document.getElementById("LeadSubmitbtn").style.color = '#495057';
+    {% comment %} button.classList.toggle("list-group-item-light") {% endcomment %}
+  </script>
+
+{% endblock %}

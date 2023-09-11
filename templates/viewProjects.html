@@ -43,6 +43,12 @@
                                   {% comment %} {% if not item.status %} {% endcomment %}
                                   {% if item.status == "inprogress" %}
                                   <label class="badge badge-warning">InProgress</label>
+                                  {% elif item.status == "submitted" %}
+                                  <label class="badge badge-info">Submitted</label>
+                                  {% elif item.status == "review" %}
+                                  <label class="badge badge-primary">InReview</label>
+                                  {% elif item.status == "completed" %}
+                                  <label class="badge badge-success">Completed</label>
                                   {% else %} 
                                     <label class="badge badge-danger">Pending</label>                              
                                   {% endif %}                                 

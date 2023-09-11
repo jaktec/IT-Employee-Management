@@ -31,7 +31,7 @@ class TeamleadSignUpView(CreateView):
         user = form.save()        
         login(self.request, user)
         password = form.cleaned_data['password1']
-        company.send_registration_email(user,password)
+        # company.send_registration_email(user,password)
         return redirect('teamleads')
 
 #def LeadProjectUpdate(request):
@@ -46,22 +46,43 @@ class TeamleadSignUpView(CreateView):
    # return render(request,'stApp.html',context)
 
 
-def ShowApp(request): #  showw proj snd from developers
-    
+def LeadSubmit(request): #   proj snd from developers
     teamlead = Teamlead.objects.filter(user=request.user).first()
-    app = DevProjectUpdate.objects.filter(to_teamlead = teamlead).all()
-    app1 = DevProjectUpdate.objects.filter(to_teamlead = teamlead).all()
-    
-    app2 = DevProjectUpdate.objects.filter(id=request.POST.get('answer')).all()
+    devpdate = DevProjectUpdate.objects.filter(to_teamlead = teamlead).all()
+    form = LeadProjectUpdateForm(request.POST)
+    if request.method == 'POST':
+        for devsubmit in devpdate:
 
-    for items in app2:
+            # project_assignment.status = request.POST.get('status')
+            # project_assignment.save()
+            form = LeadProjectUpdateForm(request.POST)
+            if form.is_valid():
+                
+                project_id = request.POST.get('pid')
+                paction = request.POST.get('paction')
+                passignment = get_object_or_404(ProjectAssignment, id=project_id)
+                form.instance.to_admin = passignment.by_admin
+                form.instance.user=teamlead
+                form.instance.project = passignment
+                form.instance.attachments = devsubmit.attachments
+                if paction == "accept":
+                    passignment.status = "review"
+                    form.instance.status = "accept"
+                elif paction == "reject":
+                    passignment.status = "inprogress"
+                    form.instance.status = "reject"
+                passignment.save()  
+                form.save()
+                return redirect('LeadSubmit')  
+              
+    # for items in app2:
 
-        items.status = request.POST.get('status')
-        items.save()
+    #     items.status = request.POST.get('status')
+    #     items.save()
 
-    context = { 'app':app }
+    context = { 'form':form, 'devupdate':devpdate }
 
-    return render(request,'ShowDevApp.html',context)
+    return render(request,'LeadSubmission.html',context)
 
 
 def Tpage(request):

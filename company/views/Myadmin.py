@@ -34,10 +34,16 @@ def Adpage(request):
     new_projects = ProjectAssignment.objects.filter(status=None).count()
     # from django.db.models import Q....new_projects_count = ProjectAssignment.objects.filter(Q(status=None) | Q(status='')).count()
     inprogress = ProjectAssignment.objects.filter(status="inprogress").count()
+    submitted = ProjectAssignment.objects.filter(status="submitted").count()
+    in_review = ProjectAssignment.objects.filter(status="review").count()
+    completed = ProjectAssignment.objects.filter(status="completed").count()
     user_count = User.objects.count()
     context = {'ad':'Hello',
                'np': new_projects,
                'ip': inprogress,
+                'sd': submitted,
+                'ir': in_review,
+                'cd': completed,
                 'uc': user_count
                }
 
@@ -48,7 +54,7 @@ def Adpage(request):
 def ShowTeamleadApp(request): # show proj snd from teamleads
     
     admin = Admin.objects.filter(user=request.user).first()
-    app = LeadProjectUpdate.objects.filter(to_admin = admin).all()
+    leadupdate = LeadProjectUpdate.objects.filter(to_admin = admin).all()
     
     app2 = LeadProjectUpdate.objects.filter(id=request.POST.get('answer')).all()
 
@@ -57,7 +63,32 @@ def ShowTeamleadApp(request): # show proj snd from teamleads
         items.status = request.POST.get('status')
         items.save()
 
-    context = { 'app':app }
+    context = { 'leadupdate':leadupdate }   
+    
+    
+    if request.method == 'POST':
+        for devsubmit in leadupdate:
+            
+
+            # project_assignment.status = request.POST.get('status')
+            # project_assignment.save()
+            
+            
+                
+            project_id = request.POST.get('pid')
+            paction = request.POST.get('paction')
+            passignment = get_object_or_404(ProjectAssignment, id=project_id)
+                
+                
+            if paction == "accept":
+                passignment.status = "completed"
+                    
+            elif paction == "reject":
+                passignment.status = "submitted"
+                    
+            passignment.save()  
+                
+            return redirect('ShowTapp')  
 
     return render(request,'showTeamleadApp.html',context)
 

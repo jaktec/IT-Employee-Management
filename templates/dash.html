@@ -24,19 +24,19 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id="Adminpagebtn" href="adminpage" >Overview</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "projectAssingbtn"  href="AddProj">Add Project</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "viewProjbtn"  href="ViewProj">View Projects</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showtlsbtn"  href="ShowTapp">Lead Submissions</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showtlsbtn"  href="ShowTapp">Project Submissions</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "usrmgbtn"  href="UserMng">User Management</a>
                     {% endif %}
                     {% if user.is_teamlead %}
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id="teamleadbtn" href="teamleads" >Overview</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "assignProj"  href="AssignProj">Assign Project</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "tappbtn"  href="tprojectApp">Project Update</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showappbtn"  href="Showapp">Dev Submissions</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showtlsbtn"  href="ShowTapp">Assignment Approval</a>
+                    {% comment %} <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "tappbtn"  href="tprojectApp">Project Update</a> {% endcomment %}
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "LeadSubmitbtn"  href="LeadSubmit">Project Update</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showtlsbtn"  href="TAppStatus">Response</a>
                     {% endif %}
                     {% if user.is_developer %}
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id="devpagebtn" href="developers" >Overview</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "devprojectbtn"  href="sprojectApp">Submit Status</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "devprojectbtn"  href="sprojectApp">Submit Project</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" id = "showrespbtn"  href="ShowTResp">View Response</a>
                     
                     {% endif %}
