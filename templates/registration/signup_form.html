@@ -29,4 +29,24 @@
 </div>
 </div>
 </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      
+      const usernameInput = document.getElementById("names");
+
+      
+      usernameInput.addEventListener("input", function() {
+          const username = this.value; 
+          if (username.length > 0) {
+              
+              const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
+              this.value = capitalizedUsername;
+          }
+      });
+  });
+</script>
+
+
 {% endblock %}

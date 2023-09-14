@@ -64,7 +64,7 @@ Welcome Teamlead {{user.username}}
         <form method="post" novalidate>
             {% csrf_token %}
             <input type="hidden" name="pid" value="{{ subm.project.id }}">    
-            <p>Attachments: {% if not subm.attachments %} Nil {% else %}  {{ subm.attachments }} {% endif %} </P>                 
+            <p>Attachments: {% if not subm.attachments %} Nil {% else %}  <p><a href="{{ resp.url }}">Download Attachment</a></p> {{ subm.attachments }} {% endif %} </P>                 
             {{ form|crispy }}
             <button type="submit" class="btn btn-success" name="paction" value="accept">Forward To Admin</button>
             <button type="submit" class="btn btn-danger" name="paction" value="reject">Reject Submission</button>
@@ -90,8 +90,7 @@ Welcome Teamlead {{user.username}}
           {% endif %}
     
        
-      </div>
-    </div>
+      
     {% endfor %}
 <script> 
     {% comment %} const button = document.getElemenstById("Adminpagebtn"); {% endcomment %}

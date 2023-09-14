@@ -9,7 +9,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 import threading
 from threading import Thread
-
+from ..models import Notifications
+from django import template
 class SignUpView(TemplateView):
     template_name = 'registration/signup.html'
 
@@ -67,3 +68,9 @@ def send_registration_email(user, password):
     # Start a new thread to send the email asynchronously
     thread = threading.Thread(target=send_registration_email_async, args=(user, password))
     thread.start()
+
+register = template.Library()
+@register.inclusion_tag('dash.html')
+def display_notifications(user):
+    notifications = Notifications.objects.filter(user=user)
+    return {'notifications': notifications}

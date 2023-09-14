@@ -21,6 +21,9 @@ class TeamleadSignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         password = self.generate_random_password()
+        self.fields['username'].widget.attrs.update({'id': 'names'})
+        self.fields['first_name'].widget.attrs.update({'id': 'names'})
+        self.fields['last_name'].widget.attrs.update({'id': 'names'})
         self.fields['password1'].widget.attrs.update({'value': password})
         self.fields['password2'].widget.attrs.update({'value': password})
         
@@ -56,6 +59,9 @@ class DeveloperSignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         password = self.generate_random_password()
+        self.fields['username'].widget.attrs.update({'id': 'names'})
+        self.fields['first_name'].widget.attrs.update({'id': 'names'})
+        self.fields['last_name'].widget.attrs.update({'id': 'names'})
         self.fields['password1'].widget.attrs.update({'value': password})
         self.fields['password2'].widget.attrs.update({'value': password})
         

@@ -78,4 +78,8 @@ class LeadProjectUpdate(models.Model):
     to_admin = models.ForeignKey(Admin,on_delete=models.CASCADE, blank = True)
     remarks = models.CharField(max_length=1000, null=True)
     status = models.CharField(max_length=100,null=True)
-    attachments = models.FileField(null=True, max_length=1000)
+    attachments = models.FileField(null=True, max_length=1000, upload_to='uploads/')
+
+class Notifications(models.Model):
+    user = models.ManyToManyField(User)
+    content = models.CharField(max_length=100,null=True)

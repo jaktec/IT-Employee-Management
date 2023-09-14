@@ -1,6 +1,6 @@
 from django.contrib import admin
 from company.models import ( Developer,User,
-    Teamlead,LeadProjectUpdate,DevProjectUpdate, ProjectAssignment)
+    Teamlead,LeadProjectUpdate,DevProjectUpdate, ProjectAssignment, Notifications)
 
 # Register your models here.
 
@@ -45,5 +45,12 @@ class UserAdmin(admin.ModelAdmin):
         model = User
 
 admin.site.register(User,UserAdmin)
+
+class NotificationAdmin(admin.ModelAdmin):
+
+    class Meta:
+        model = Notifications
+
+admin.site.register(Notifications,NotificationAdmin)
 
 

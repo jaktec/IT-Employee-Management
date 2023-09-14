@@ -11,8 +11,9 @@ from django.views import View
 
 from ..decorators import developer_required
 from ..forms import StdProjectAppForm,DeveloperSignUpForm
-from ..models import Teamlead,Developer, User , LeadProjectUpdate, DevProjectUpdate, ProjectAssignment
+from ..models import Teamlead,Developer, User , LeadProjectUpdate, DevProjectUpdate, ProjectAssignment, Notifications
 from company.views import company
+
 
 class DeveloperSignUpView(CreateView):
     model = User
@@ -24,7 +25,11 @@ class DeveloperSignUpView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        user = form.save()        
+        user = form.save()
+        admin_users = User.objects.filter(is_staff=True)
+        notification = Notifications(content= str(user.username) +"joined as Developer")
+        notification.save()
+        notification.user.add(*admin_users)            
         login(self.request, user)
         password = form.cleaned_data['password1']
         # company.send_registration_email(user,password)
@@ -41,7 +46,7 @@ def StProjectApp(request):
 
             # project_assignment.status = request.POST.get('status')
             # project_assignment.save()
-            form = StdProjectAppForm(request.POST)
+            form = StdProjectAppForm(request.POST, request.FILES)
             if form.is_valid():
                 
                 project_id = request.POST.get('answer')
@@ -52,6 +57,13 @@ def StProjectApp(request):
                 passignment.status = "submitted"               
                 passignment.save()  
                 form.save()
+
+                lead = passignment.to_lead.user
+                notification = Notifications(content=  "Project submitted by" + str(request.user.username))
+                notification.save()
+                notification.user.add(lead)
+
+               
                 return redirect('sprojectApp')  
     # if form.is_valid():
     #     form.instance.user=developer

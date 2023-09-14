@@ -13,10 +13,10 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 
 from ..decorators import teamlead_required
 from ..forms import LeadProjectUpdateForm,TeamleadSignUpForm,LeadProjectUpdateForm,AppStatusForm, AssignProjectForm
-from ..models import  User,Teamlead,DevProjectUpdate,Developer,LeadProjectUpdate, ProjectAssignment
+from ..models import  User,Teamlead,DevProjectUpdate,Developer,LeadProjectUpdate, ProjectAssignment, Notifications
 
 from company.views import company
-
+from django.http import FileResponse
 
 class TeamleadSignUpView(CreateView):
     model = User
@@ -28,7 +28,11 @@ class TeamleadSignUpView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):        
-        user = form.save()        
+        user = form.save()
+        admin_users = User.objects.filter(is_staff=True)
+        notification = Notifications(content= str(user.username) +"joined as Teamlead")
+        notification.save()
+        notification.user.add(*admin_users)        
         login(self.request, user)
         password = form.cleaned_data['password1']
         # company.send_registration_email(user,password)
@@ -50,37 +54,45 @@ def LeadSubmit(request): #   proj snd from developers
     teamlead = Teamlead.objects.filter(user=request.user).first()
     devpdate = DevProjectUpdate.objects.filter(to_teamlead = teamlead).all()
     form = LeadProjectUpdateForm(request.POST)
-    if request.method == 'POST':
-        for devsubmit in devpdate:
-
+    response = ""
+    # if request.method == 'POST':
+    for devsubmit in devpdate:
+        if devsubmit.attachments:
+            file_path = devsubmit.attachments.path
+           
+            response = FileResponse(open(file_path, 'rb'))
+            response['Content-Disposition'] = f'attachment; filename="{devsubmit.attachments.name}"'
             # project_assignment.status = request.POST.get('status')
             # project_assignment.save()
-            form = LeadProjectUpdateForm(request.POST)
-            if form.is_valid():
+        form = LeadProjectUpdateForm(request.POST)
+        if form.is_valid():
                 
-                project_id = request.POST.get('pid')
-                paction = request.POST.get('paction')
-                passignment = get_object_or_404(ProjectAssignment, id=project_id)
-                form.instance.to_admin = passignment.by_admin
-                form.instance.user=teamlead
-                form.instance.project = passignment
-                form.instance.attachments = devsubmit.attachments
-                if paction == "accept":
-                    passignment.status = "review"
-                    form.instance.status = "accept"
-                elif paction == "reject":
-                    passignment.status = "inprogress"
-                    form.instance.status = "reject"
-                passignment.save()  
-                form.save()
-                return redirect('LeadSubmit')  
+            project_id = request.POST.get('pid')
+            paction = request.POST.get('paction')
+            passignment = get_object_or_404(ProjectAssignment, id=project_id)
+            form.instance.to_admin = passignment.by_admin
+            form.instance.user=teamlead
+            form.instance.project = passignment
+            form.instance.attachments = devsubmit.attachments
+
+                
+               
+            if paction == "accept":
+                passignment.status = "review"
+                form.instance.status = "accept"
+            elif paction == "reject":
+                passignment.status = "inprogress"
+                form.instance.status = "reject"
+            passignment.save()  
+            form.save()
+            return redirect('LeadSubmit')  
               
     # for items in app2:
 
     #     items.status = request.POST.get('status')
     #     items.save()
 
-    context = { 'form':form, 'devupdate':devpdate }
+    context = { 'form':form, 'devupdate':devpdate , 'resp': response}
 
     return render(request,'LeadSubmission.html',context)
 
@@ -139,6 +151,11 @@ def AssignProject(request):
                 project_assignment2.status = "inprogress"
                 project_assignment2.developers.set(form.cleaned_data['developers'])
                 project_assignment2.save()  
+
+                dev_users = [developer.user for developer in project_assignment2.developers.all()]
+                notification = Notifications(content= "Project Assigned by" + str(project_assignment2.to_lead))
+                notification.save()
+                notification.user.add(*dev_users)    
                 # form.save_m2m() 
                 return redirect('teamleads')  
     
